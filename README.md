@@ -286,6 +286,9 @@ all_ABE = pd.DataFrame({'Word':all_ABE.index, 'Count':all_ABE.values})
 print(all_ABE)
 ````
 
-<img width="228" alt="Screen Shot 2021-12-05 at 7 00 34 AM" src="https://user-images.githubusercontent.com/69263707/144747581-d7050751-c1e0-458b-89a6-269062a81335.png">
 
+<p align="center">
+    <img alt="3" src="https://user-images.githubusercontent.com/69263707/144747581-d7050751-c1e0-458b-89a6-269062a81335.png" width="600">
+
+</p>
 
