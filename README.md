@@ -292,3 +292,37 @@ print(all_ABE)
 
 </p>
 
+### Geopandas:
+
+```
+# indeed_table['Location']
+
+indeed_table['Location_split'] = indeed_table['Location'].str.split('+').str[0]
+indeed_table['Location_split2'] = indeed_table['Location_split'].str.replace('\d+', '')
+indeed_table[['City', 'State']] = indeed_table['Location_split2'].str.split(',', expand=True)
+indeed_table_final = indeed_table.drop(['Location_split', 'Location_split2', 'Location', 'test1', 'test2'], axis=1)
+indeed_table_final['State'].str.split(' ', expand=True)
+test = indeed_table_final['State'].str.split(' ', expand=True)
+test2 = test[1].str.split('•', expand=True)
+state_counts = test2[0].value_counts()
+state_counts
+
+<img width="282" alt="Screen Shot 2021-12-05 at 7 11 52 AM" src="https://user-images.githubusercontent.com/69263707/144747976-73d83673-f877-4ab3-966b-44d8a84bdb71.png">
+
+```
+# Import geopandas package
+import geopandas as gpd
+# Read in shapefile and examine data
+usa = gpd.read_file('/Users/ryanjeon/Desktop/ABE516/cb_2018_us_state_20m/cb_2018_us_state_20m.shp')
+states = usa.merge(state_count, left_on = 'STUSPS', right_on = 'State')
+states = states.loc[~states['NAME'].isin(['Alaska', 'Hawaii'])]
+fig, ax = plt.subplots(1, figsize=(15, 15))
+plt.xticks(rotation=90)
+pop_states.plot(column="Count", cmap="Reds", linewidth=0.4, ax=ax, edgecolor=".4")
+bar_info = plt.cm.ScalarMappable(cmap="Reds", norm=plt.Normalize(vmin=0, vmax=120))
+bar_info._A = []
+cbar = fig.colorbar(bar_info)
+```
+
+<img width="842" alt="Screen Shot 2021-12-05 at 7 13 08 AM" src="https://user-images.githubusercontent.com/69263707/144748022-aed39b68-090b-4f1d-b957-aaa26f5bc9eb.png">
+
