@@ -1,4 +1,4 @@
-## ABE 516 Project: by Ryan Jeon
+## by Ryan Jeon
 
 
 ## Project Workflow: 
@@ -11,16 +11,43 @@
 ## 1. Ask as interesting question: 
 "Is the Iowa State University ABE program teaching the right skills that are needed for ABE careers on Indeed.com?"
 
+
+<img width="551" alt="Screen Shot 2021-12-05 at 1 35 54 PM" src="https://user-images.githubusercontent.com/69263707/144760951-05c80c70-adfa-46b9-ba74-9524fa5a4746.png">
+
+
+
+
+
 ## 2. Obtain the data:
 I want to find keywords that are used in the Indeed.com and ISU ABE course catalogue: 
   - I will be using the Indeed.com homepage for my career keyword data.
   - I will also be using the ISU ABE course catalogue for my course key word data. 
 
+
+
+
+
+
 ## 3. Exploring the data:
 My plan is to use a variety of webscraping functions (beautiful soup, nltk, requests) to explore what kind of data I can obtain from the two websites. 
 Then, using nltk, I will be able to use seaborn to plot the frequencies of each keyword 
 
-I would also be interested in plotting the job locations by state- sort of like how COVID cases are mapped on the US map
+
+Using right click, and then going to "inspect" will show you the "matrix" or the HTML version of the website. 
+<img width="722" alt="Screen Shot 2021-12-05 at 1 37 35 PM" src="https://user-images.githubusercontent.com/69263707/144761012-bfc0a8c0-1112-4cdd-ade3-baa59987180f.png">
+
+<img width="2272" alt="Screen Shot 2021-12-05 at 1 42 08 PM" src="https://user-images.githubusercontent.com/69263707/144761165-344b546c-c56a-41c0-bb27-56d716611799.png">
+
+
+Clicking the very left button (the mouse) on the tool bar will give you an interactive look at how the website is coded.
+
+<img width="691" alt="Screen Shot 2021-12-05 at 1 38 40 PM" src="https://user-images.githubusercontent.com/69263707/144761066-47fd2c78-d573-4e73-ab6b-1d7102cea859.png">
+
+
+Hovering your mouse over a job title highlights the following line
+
+<img width="799" alt="Screen Shot 2021-12-05 at 1 40 37 PM" src="https://user-images.githubusercontent.com/69263707/144761131-a4da2dcc-fc04-42a8-9b76-a7eafb5b6642.png">
+
 
 ## 3. User Defined Functions for Exploring data: 
 
