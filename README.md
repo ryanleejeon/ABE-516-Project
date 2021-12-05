@@ -271,12 +271,11 @@ all_ABE = pd.DataFrame({'Word':all_ABE.index, 'Count':all_ABE.values})
 print(all_ABE)
 ```
 
-
 <img width="300" alt="Screen Shot 2021-12-05 at 7 00 18 AM" src="https://user-images.githubusercontent.com/69263707/144747581-d7050751-c1e0-458b-89a6-269062a81335.png">
+
 ### 4. Continued (Using Geopandas):
 ```
-# indeed_table['Location']
-
+#indeed_table['Location']
 indeed_table['Location_split'] = indeed_table['Location'].str.split('+').str[0]
 indeed_table['Location_split2'] = indeed_table['Location_split'].str.replace('\d+', '')
 indeed_table[['City', 'State']] = indeed_table['Location_split2'].str.split(',', expand=True)
