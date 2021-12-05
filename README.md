@@ -94,6 +94,11 @@ def course_cat(URL):
     return compiled
 
 ```
+We are going to use the link to the ABE course catalog:
+
+```
+URL = https://catalog.iastate.edu/azcourses/abe/
+```
 
 ```
 ABE = course_cat(URL)
