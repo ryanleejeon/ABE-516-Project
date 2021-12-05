@@ -307,6 +307,7 @@ cbar = fig.colorbar(bar_info)
 <img width="842" alt="Screen Shot 2021-12-05 at 7 13 08 AM" src="https://user-images.githubusercontent.com/69263707/144748022-aed39b68-090b-4f1d-b957-aaa26f5bc9eb.png">
 
 # Discussion:
+
 Based on these qualitative results, I argue that ABE is doing a great job at teaching students the skills necessary for careers. 
 The following key words between Indeed.com job postings and ABE course catalogues are shared in the top 30:
 - engineering
@@ -324,6 +325,12 @@ I would say that the only key word that I found on Indeed.com that should be men
 It makes sense, since a lot of engineers wear specialized equipment for their work. Perhaps we need to include this word in the catalogue or discuss it more in some of the courses. 
 
 Using geopandas, I also found that it also looks like most of the jobs are centered around the midwest, particularly in Iowa. If that result was intended or erroneous can be up for discussion, but it seems like most of the job opportunities are located in Iowa. 
+
+# Course Concepts:
+- Webscraping
+- Data summary using basic Pandas functions
+- Plotting using Seaborn
+- NLTK package
 
 ## 5. Class Task:
   - I would also like to use the course catalogue for other top ABE schools (Purdue and Cornell)
