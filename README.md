@@ -33,10 +33,10 @@ def get_df_name(df):
 
 ```
 
-#### User Defined Function(s): 
+## User Defined Function(s): 
+### Course Catalogue Function:
 
 ```yml
-# Course Catalogue Function:
 
 from bs4 import BeautifulSoup
 import requests
@@ -67,7 +67,7 @@ def course_cat(URL):
 ```
 
 
-### Course Catelogue Visual Function:
+### Course Catelogue Frequency Plot Function:
 ```yml
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -104,7 +104,7 @@ def course_cat_figure(compiled):
 
 
 #### Indeed Job Postings:
-### Course Catelogue Visual Function:
+### Indeed Job Postings Visual Function:
 ```yml
 def IndeedPostings(URL_from_indeed):
     df = pd.DataFrame(columns = ["Job_Titles"])
@@ -161,10 +161,7 @@ def IndeedPostings(URL_from_indeed):
 
 ```
 
-
-### Now lets look at the Indeed.com functions
-
-#### Indeed Data Figures:
+#### Indeed Data Frequency Figure:
 ``` yml
 def indeed_figure(indeed_table):
     final_list = []
