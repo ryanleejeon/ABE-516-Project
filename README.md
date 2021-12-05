@@ -6,7 +6,7 @@
 2. Obtain the data
 3. Explore the data
 4. Communicate and visualize the results
-
+5. Future steps 
 
 ## 1. Ask as interesting question: 
 "Is the Iowa State University ABE program teaching the right skills that are needed for ABE careers on Indeed.com?"
@@ -15,13 +15,12 @@
 I want to find keywords that are used in the Indeed.com and ISU ABE course catalogue: 
   - I will be using the Indeed.com homepage for my career keyword data.
   - I will also be using the ISU ABE course catalogue for my course key word data. 
-  - I would also like to use the course catalogue for other top ABE schools (Purdue and Cornell) 
 
 ## 3. Exploring the data:
 My plan is to use a variety of webscraping functions (beautiful soup, nltk, requests) to explore what kind of data I can obtain from the two websites. 
 Then, using nltk, I will be able to use seaborn to plot the frequencies of each keyword 
 
-
+I would also be interested in plotting the job locations by state- sort of like how COVID cases are mapped on the US map
 
 #### Auxilliary Function(s): 
 
@@ -326,3 +325,6 @@ cbar = fig.colorbar(bar_info)
 
 <img width="842" alt="Screen Shot 2021-12-05 at 7 13 08 AM" src="https://user-images.githubusercontent.com/69263707/144748022-aed39b68-090b-4f1d-b957-aaa26f5bc9eb.png">
 
+### 5. Future steps:
+  - I would also like to use the course catalogue for other top ABE schools (Purdue and Cornell) (did not work unfortunetly) 
+  - Plot geopandas by city, not by state
