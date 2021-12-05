@@ -19,9 +19,9 @@
 
 
 ## 2. Obtain the data:
-I want to find keywords that are used in the Indeed.com and ISU ABE course catalogue: 
+I want to find keywords that are used in the Indeed.com and ISU ABE course catalog: 
   - I will be using the Indeed.com homepage for my career keyword data.
-  - I will also be using the ISU ABE course catalogue for my course key word data. 
+  - I will also be using the ISU ABE course catalog for my course key word data. 
 
 
 
@@ -63,7 +63,7 @@ def get_df_name(df):
 ```
 
 
-### Course Catalogue Function:
+### Course Catalog Function:
 
 ```yml
 
