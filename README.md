@@ -43,20 +43,25 @@ import requests
 import pandas as pd
 
 def course_cat(URL):
+    df_courses = pd.DataFrame(columns = ["Descriptions"])
+    
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15'}
     r = requests.get(URL, headers = headers)
     soup = BeautifulSoup(r.text, 'html.parser')
-    df_courses = pd.DataFrame(columns = ["Descriptions"])
+    
     descriptions = soup.find_all(class_ = "prereq")
     for description in descriptions:
         description_list = description.text
         df_courses.loc[len(df_courses.index)] = [description_list]
+        
     df_course_names = pd.DataFrame(columns = ["Names"])
+    
     names = soup.find_all(class_ = "toggle-accordion")
     for name in names:
         coursename_list = name.text
         df_course_names.loc[len(df_course_names.index)] = [coursename_list]
     compiled = pd.concat([df_course_names, df_courses], axis=1, join='inner')
+    
     return compiled
 
 ```
@@ -73,7 +78,6 @@ from nltk.tokenize import sent_tokenize
 
 def course_cat_figure(compiled):
     final_list = []
-
     stop_words = stopwords.words('english')
     newStopWords = ['department','curriculum', 'within', 'permission', 'introduction', 'credits','216Engineering', 'equivalent8', 'week-course', 'course', 'offered', 'student', 'satisfactory-fail', 'prereq','credit', 'enrollment', '165Introduction']
     stop_words.extend(newStopWords)
@@ -88,9 +92,6 @@ def course_cat_figure(compiled):
     all_fdist = nltk.FreqDist(text).most_common(30)
     all_fdist = pd.Series(dict(all_fdist))
     fig, ax = plt.subplots(figsize=(20,10))
-
-
-
 
     name = get_df_name(compiled)
     bar_plot = sns.barplot(x=all_fdist.values, y=all_fdist.index, orient='h', ax=ax)
@@ -134,13 +135,11 @@ def IndeedPostings(URL_from_indeed):
         
         for company in companies:
             company_list = company.text
-            df2.loc[len(df2.index)] = [company_list]
-        
+            df2.loc[len(df2.index)] = [company_list]       
         
         for location in locations:
             location_list = location.text
             df3.loc[len(df3.index)] = [location_list]
-        
     
         for description in descriptions:
             description_list = description.text
@@ -151,20 +150,19 @@ def IndeedPostings(URL_from_indeed):
         for salary in salaries:
             salary_list = salary.text
             df5.loc[len(df5.index)] = [salary_list]
-        
     
         for URL in URLs:
             base = 'www.indeed.com'
             link = URL.attrs['href']
             new_URL = base + link
             df6.loc[len(df6.index)] = [new_URL]
-    boom = pd.concat([df, df2, df3, df4, df5, df6], axis=1)
-    return(boom)
+    indeed_table = pd.concat([df, df2, df3, df4, df5, df6], axis=1)
+    return(indeed_table)
 
 ```
 
 
-
+### Now lets look at the Indeed.com functions
 
 #### Indeed Data Figures:
 ``` yml
@@ -185,9 +183,6 @@ def indeed_figure(indeed_table):
     all_fdist = nltk.FreqDist(text).most_common(30)
     all_fdist = pd.Series(dict(all_fdist))
     fig, ax = plt.subplots(figsize=(20,10))
-
-
-
 
     bar_plot = sns.barplot(x=all_fdist.values, y=all_fdist.index, orient='h', ax=ax)
     plt.title('Frequencies of the Most Common Words in Indeed.com ABE Job Postings \n (12/04/21) \n', fontsize = 24)
@@ -216,8 +211,7 @@ course_cat_figure(ABE)
 <img width="1083" alt="Screen Shot 2021-12-05 at 6 57 06 AM" src="https://user-images.githubusercontent.com/69263707/144747494-d326c1c6-a36c-4215-8b54-7898e548f7b0.png">
 
 
-### Back to Indeed.com
-
+## Going Back to Indeed.com
 ```
 URL_indeed = 'https://www.indeed.com/jobs?q=agricultural%20engineer&start={pagenumber}'
 indeed_table = IndeedPostings(URL_indeed)
@@ -234,10 +228,8 @@ indeed_table.head(10)
 indeed_figure(indeed_table)
 ```
 
-### Now we can see what keywords were most commonly used in the ABE job postings on Indeed.com
-
+## Now we can see what keywords were most commonly used in the ABE job postings on Indeed.com
 ### Lets look at the list of words again:
-
 
 ### final List of Words for Indeed Job Descriptions: 
 ```
@@ -263,8 +255,6 @@ print(all_Indeed)
 <img width="250" alt="Screen Shot 2021-12-05 at 7 00 18 AM" src="https://user-images.githubusercontent.com/69263707/144747578-e3dda20c-63a7-4714-96e3-ba4365845655.png">
 
 
-
-
 ### final List of Words for ABE Course Catalogue Descriptions: 
 ```
 final_list = []
@@ -285,14 +275,12 @@ all_ABE = pd.DataFrame({'Word':all_ABE.index, 'Count':all_ABE.values})
 print(all_ABE)
 ````
 
-
 <p align="center">
     <img alt="3" src="https://user-images.githubusercontent.com/69263707/144747581-d7050751-c1e0-458b-89a6-269062a81335.png" width="600">
 
 </p>
 
-### Geopandas:
-
+### 4. Continued (Using Geopandas):
 ```
 # indeed_table['Location']
 
@@ -324,6 +312,25 @@ cbar = fig.colorbar(bar_info)
 ```
 
 <img width="842" alt="Screen Shot 2021-12-05 at 7 13 08 AM" src="https://user-images.githubusercontent.com/69263707/144748022-aed39b68-090b-4f1d-b957-aaa26f5bc9eb.png">
+
+# Discussion:
+Based on these qualitative results, I argue that ABE is doing a great job at teaching students the skills necessary for careers. 
+The following key words between Indeed.com job postings and ABE course catalogues are shared in the top 30:
+- engineering
+- systems
+- agricultural
+- design
+- research 
+- management
+- quality 
+- techniques
+
+I would say that the only key word that I found on Indeed.com that should be mentioned more in the ABE course catalogue would be:
+- equipment
+
+It makes sense, since a lot of engineers wear specialized equipment for their work. Perhaps we need to include this word in the catalogue or discuss it more in some of the courses. 
+
+Using geopandas, I also found that it also looks like most of the jobs are centered around the midwest, particularly in Iowa. If that result was intended or erroneous can be up for discussion, but it seems like most of the job opportunities are located in Iowa. 
 
 ### 5. Future steps:
   - I would also like to use the course catalogue for other top ABE schools (Purdue and Cornell) (did not work unfortunetly) 
