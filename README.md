@@ -95,42 +95,15 @@ def course_cat(URL):
 
 ```
 
+```
+ABE = course_cat(URL)
+ABE
+```
+<img width="718" alt="Screen Shot 2021-12-05 at 6 55 23 AM" src="https://user-images.githubusercontent.com/69263707/144747440-3407f455-b77a-4ac9-8eef-9f21f4ec0ab6.png">
 
-### Course Catelogue Frequency Plot Function:
-```yml
-import seaborn as sns
-import matplotlib.pyplot as plt
-import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.tokenize import sent_tokenize
 
-def course_cat_figure(compiled):
-    final_list = []
-    stop_words = stopwords.words('english')
-    newStopWords = ['department','curriculum', 'within', 'permission', 'introduction', 'credits','216Engineering', 'equivalent8', 'week-course', 'course', 'offered', 'student', 'satisfactory-fail', 'prereq','credit', 'enrollment', '165Introduction']
-    stop_words.extend(newStopWords)
-    for row in compiled.iterrows():
-        words = word_tokenize(row[1]['Descriptions'])
-        for word in words:
-            if word.lower() not in stop_words:
-                if len(word) > 5:
-                    final_list.append(word)
-                
-    text = nltk.Text(final_list)
-    all_fdist = nltk.FreqDist(text).most_common(30)
-    all_fdist = pd.Series(dict(all_fdist))
-    fig, ax = plt.subplots(figsize=(20,10))
 
-    name = get_df_name(compiled)
-    bar_plot = sns.barplot(x=all_fdist.values, y=all_fdist.index, orient='h', ax=ax)
-    plt.title('Frequencies of the Most Common Words in the ' + name + ' Course Catalogue \n (12/04/21) \n', fontsize = 24)
-    plt.xlabel('Frequency', fontsize=18)
-    plt.ylabel('', fontsize=18)
-        
- ```
-
-### Indeed Job Postings Visual Function:
+### Indeed Job Postings Dataset Function:
 ```yml
 def IndeedPostings(URL_from_indeed):
     df = pd.DataFrame(columns = ["Job_Titles"])
@@ -186,6 +159,71 @@ def IndeedPostings(URL_from_indeed):
     return(indeed_table)
 
 ```
+```
+URL_indeed = 'https://www.indeed.com/jobs?q=agricultural%20engineer&start={pagenumber}'
+indeed_table = IndeedPostings(URL_indeed)
+indeed_table.head(10)
+```
+
+<img width="1090" alt="Screen Shot 2021-12-05 at 6 58 25 AM" src="https://user-images.githubusercontent.com/69263707/144747526-9b652985-d5b1-48fb-aff8-8897af53457b.png">
+
+### Good practice to see what kind of size dataset we are working with 
+<img width="1116" alt="Screen Shot 2021-12-05 at 6 58 36 AM" src="https://user-images.githubusercontent.com/69263707/144747528-ef5a9ea3-229f-4858-99a1-e0968a831980.png">
+
+
+```
+indeed_figure(indeed_table)
+```
+
+
+## 4. Communicate and visualize the results:
+
+
+### Course Catalog Frequency Plot Function:
+```yml
+import seaborn as sns
+import matplotlib.pyplot as plt
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize
+
+def course_cat_figure(compiled):
+    final_list = []
+    stop_words = stopwords.words('english')
+    newStopWords = ['department','curriculum', 'within', 'permission', 'introduction', 'credits','216Engineering', 'equivalent8', 'week-course', 'course', 'offered', 'student', 'satisfactory-fail', 'prereq','credit', 'enrollment', '165Introduction']
+    stop_words.extend(newStopWords)
+    for row in compiled.iterrows():
+        words = word_tokenize(row[1]['Descriptions'])
+        for word in words:
+            if word.lower() not in stop_words:
+                if len(word) > 5:
+                    final_list.append(word)
+                
+    text = nltk.Text(final_list)
+    all_fdist = nltk.FreqDist(text).most_common(30)
+    all_fdist = pd.Series(dict(all_fdist))
+    fig, ax = plt.subplots(figsize=(20,10))
+
+    name = get_df_name(compiled)
+    bar_plot = sns.barplot(x=all_fdist.values, y=all_fdist.index, orient='h', ax=ax)
+    plt.title('Frequencies of the Most Common Words in the ' + name + ' Course Catalogue \n (12/04/21) \n', fontsize = 24)
+    plt.xlabel('Frequency', fontsize=18)
+    plt.ylabel('', fontsize=18)
+        
+ ```
+```
+course_cat_figure(ABE)
+```
+
+![download-3](https://user-images.githubusercontent.com/69263707/144747456-5bb02fbd-85f4-4761-865c-1d871334c7fa.png)
+
+### I was also curious to see what other "similar" majors might look like
+
+<img width="1114" alt="Screen Shot 2021-12-05 at 6 56 51 AM" src="https://user-images.githubusercontent.com/69263707/144747492-e1f4ce73-d9d8-41d4-b23c-512192c2579c.png">
+<img width="1087" alt="Screen Shot 2021-12-05 at 6 57 15 AM" src="https://user-images.githubusercontent.com/69263707/144747493-5e966f73-e1b8-45b3-9cd0-72359c96ad38.png">
+<img width="1083" alt="Screen Shot 2021-12-05 at 6 57 06 AM" src="https://user-images.githubusercontent.com/69263707/144747494-d326c1c6-a36c-4215-8b54-7898e548f7b0.png">
+
 
 #### Indeed Data Frequency Figure:
 ``` yml
@@ -213,45 +251,6 @@ def indeed_figure(indeed_table):
     plt.ylabel('', fontsize=18)
  ```
 
-## 4. Communicate and visualize the results:
-
-```
-ABE = course_cat(URL)
-ABE
-```
-<img width="718" alt="Screen Shot 2021-12-05 at 6 55 23 AM" src="https://user-images.githubusercontent.com/69263707/144747440-3407f455-b77a-4ac9-8eef-9f21f4ec0ab6.png">
-
-```
-course_cat_figure(ABE)
-```
-
-![download-3](https://user-images.githubusercontent.com/69263707/144747456-5bb02fbd-85f4-4761-865c-1d871334c7fa.png)
-
-### I was also curious to see what other "similar" majors might look like
-
-<img width="1114" alt="Screen Shot 2021-12-05 at 6 56 51 AM" src="https://user-images.githubusercontent.com/69263707/144747492-e1f4ce73-d9d8-41d4-b23c-512192c2579c.png">
-<img width="1087" alt="Screen Shot 2021-12-05 at 6 57 15 AM" src="https://user-images.githubusercontent.com/69263707/144747493-5e966f73-e1b8-45b3-9cd0-72359c96ad38.png">
-<img width="1083" alt="Screen Shot 2021-12-05 at 6 57 06 AM" src="https://user-images.githubusercontent.com/69263707/144747494-d326c1c6-a36c-4215-8b54-7898e548f7b0.png">
-
-
-### Going Back to Indeed.com
-```
-URL_indeed = 'https://www.indeed.com/jobs?q=agricultural%20engineer&start={pagenumber}'
-indeed_table = IndeedPostings(URL_indeed)
-indeed_table.head(10)
-```
-
-<img width="1090" alt="Screen Shot 2021-12-05 at 6 58 25 AM" src="https://user-images.githubusercontent.com/69263707/144747526-9b652985-d5b1-48fb-aff8-8897af53457b.png">
-
-### Good practice to see what kind of size dataset we are working with 
-<img width="1116" alt="Screen Shot 2021-12-05 at 6 58 36 AM" src="https://user-images.githubusercontent.com/69263707/144747528-ef5a9ea3-229f-4858-99a1-e0968a831980.png">
-
-
-```
-indeed_figure(indeed_table)
-```
-
-### Frequency for Indeed Job Postings
 ![download-5](https://user-images.githubusercontent.com/69263707/144755928-a0d3303b-c0f3-4d5d-9a9c-e96c1b2e02f0.png)
 
 
