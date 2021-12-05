@@ -97,7 +97,7 @@ def course_cat(URL):
 We are going to use the link to the ABE course catalog:
 
 ```
-URL = https://catalog.iastate.edu/azcourses/abe/
+URL = 'https://catalog.iastate.edu/azcourses/abe/'
 ```
 
 ```
