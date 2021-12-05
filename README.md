@@ -1,7 +1,7 @@
-## Webscraping Indeed.com
+# Webscraping Indeed.com
 
 
-# Project Workflow: 
+## Project Workflow: 
 1. Ask an interesting question: 
 2. Obtain the data
 3. Explore the data
@@ -22,7 +22,9 @@ Then, using nltk, I will be able to use seaborn to plot the frequencies of each 
 
 I would also be interested in plotting the job locations by state- sort of like how COVID cases are mapped on the US map
 
-#### Auxilliary Function(s): 
+## 3. User Defined Functions for Exploring data: 
+
+### Auxilliary Function(s): 
 
 ```yml
 # code needed to extract the name of the df
@@ -33,7 +35,7 @@ def get_df_name(df):
 
 ```
 
-## User Defined Function(s): 
+
 ### Course Catalogue Function:
 
 ```yml
@@ -101,9 +103,6 @@ def course_cat_figure(compiled):
         
  ```
 
-
-
-#### Indeed Job Postings:
 ### Indeed Job Postings Visual Function:
 ```yml
 def IndeedPostings(URL_from_indeed):
@@ -208,7 +207,7 @@ course_cat_figure(ABE)
 <img width="1083" alt="Screen Shot 2021-12-05 at 6 57 06 AM" src="https://user-images.githubusercontent.com/69263707/144747494-d326c1c6-a36c-4215-8b54-7898e548f7b0.png">
 
 
-## Going Back to Indeed.com
+### Going Back to Indeed.com
 ```
 URL_indeed = 'https://www.indeed.com/jobs?q=agricultural%20engineer&start={pagenumber}'
 indeed_table = IndeedPostings(URL_indeed)
@@ -228,7 +227,7 @@ indeed_figure(indeed_table)
 ## Now we can see what keywords were most commonly used in the ABE job postings on Indeed.com
 ### Lets look at the list of words again:
 
-### final List of Words for Indeed Job Descriptions: 
+## final List of Words for Indeed Job Descriptions: 
 ```
 final_list = []
 
@@ -270,7 +269,7 @@ all_ABE = nltk.FreqDist(text).most_common(30)
 all_ABE = pd.Series(dict(all_ABE))
 all_ABE = pd.DataFrame({'Word':all_ABE.index, 'Count':all_ABE.values})
 print(all_ABE)
-````
+```
 
 
 <img width="300" alt="Screen Shot 2021-12-05 at 7 00 18 AM" src="https://user-images.githubusercontent.com/69263707/144747581-d7050751-c1e0-458b-89a6-269062a81335.png">
@@ -287,6 +286,7 @@ test = indeed_table_final['State'].str.split(' ', expand=True)
 test2 = test[1].str.split('•', expand=True)
 state_counts = test2[0].value_counts()
 state_counts
+```
 
 <img width="282" alt="Screen Shot 2021-12-05 at 7 11 52 AM" src="https://user-images.githubusercontent.com/69263707/144747976-73d83673-f877-4ab3-966b-44d8a84bdb71.png">
 
@@ -326,6 +326,6 @@ It makes sense, since a lot of engineers wear specialized equipment for their wo
 
 Using geopandas, I also found that it also looks like most of the jobs are centered around the midwest, particularly in Iowa. If that result was intended or erroneous can be up for discussion, but it seems like most of the job opportunities are located in Iowa. 
 
-### 5. Future steps:
+## 5. Future steps:
   - I would also like to use the course catalogue for other top ABE schools (Purdue and Cornell) (did not work unfortunetly) 
   - Plot geopandas by city, not by state
