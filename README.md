@@ -8,20 +8,20 @@
 4. Communicate and visualize the results
 
 
-### 1. Ask as interesting question: 
+## 1. Ask as interesting question: 
 "Is the Iowa State University ABE program teaching the right skills that are needed for ABE careers on Indeed.com?"
 
-### 2. Obtain the data:
+## 2. Obtain the data:
 I want to find keywords that are used in the Indeed.com and ISU ABE course catalogue: 
   - I will be using the Indeed.com homepage for my career keyword data.
   - I will also be using the ISU ABE course catalogue for my course key word data. 
   - I would also like to use the course catalogue for other top ABE schools (Purdue and Cornell) 
 
-### 3. Exploring the data:
+## 3. Exploring the data:
 My plan is to use a variety of webscraping functions (beautiful soup, nltk, requests) to explore what kind of data I can obtain from the two websites. 
 Then, using nltk, I will be able to use seaborn to plot the frequencies of each keyword 
 
-### 4. Communicate and visualize the results:
+
 
 #### Auxilliary Function(s): 
 
@@ -195,3 +195,97 @@ def indeed_figure(indeed_table):
     plt.xlabel('Frequency', fontsize=18)
     plt.ylabel('', fontsize=18)
  ```
+
+## 4. Communicate and visualize the results:
+
+```
+ABE = course_cat(URL)
+ABE
+```
+<img width="718" alt="Screen Shot 2021-12-05 at 6 55 23 AM" src="https://user-images.githubusercontent.com/69263707/144747440-3407f455-b77a-4ac9-8eef-9f21f4ec0ab6.png">
+
+```
+course_cat_figure(ABE)
+```
+
+![download-3](https://user-images.githubusercontent.com/69263707/144747456-5bb02fbd-85f4-4761-865c-1d871334c7fa.png)
+
+### I was also curious to see what other "similar" majors might look like
+
+<img width="1114" alt="Screen Shot 2021-12-05 at 6 56 51 AM" src="https://user-images.githubusercontent.com/69263707/144747492-e1f4ce73-d9d8-41d4-b23c-512192c2579c.png">
+<img width="1087" alt="Screen Shot 2021-12-05 at 6 57 15 AM" src="https://user-images.githubusercontent.com/69263707/144747493-5e966f73-e1b8-45b3-9cd0-72359c96ad38.png">
+<img width="1083" alt="Screen Shot 2021-12-05 at 6 57 06 AM" src="https://user-images.githubusercontent.com/69263707/144747494-d326c1c6-a36c-4215-8b54-7898e548f7b0.png">
+
+
+### Back to Indeed.com
+
+```
+URL_indeed = 'https://www.indeed.com/jobs?q=agricultural%20engineer&start={pagenumber}'
+indeed_table = IndeedPostings(URL_indeed)
+indeed_table.head(10)
+```
+
+<img width="1090" alt="Screen Shot 2021-12-05 at 6 58 25 AM" src="https://user-images.githubusercontent.com/69263707/144747526-9b652985-d5b1-48fb-aff8-8897af53457b.png">
+
+### Good practice to see what kind of size dataset we are working with 
+<img width="1116" alt="Screen Shot 2021-12-05 at 6 58 36 AM" src="https://user-images.githubusercontent.com/69263707/144747528-ef5a9ea3-229f-4858-99a1-e0968a831980.png">
+
+
+```
+indeed_figure(indeed_table)
+```
+
+### Now we can see what keywords were most commonly used in the ABE job postings on Indeed.com
+
+### Lets look at the list of words again:
+
+
+### final List of Words for Indeed Job Descriptions: 
+```
+final_list = []
+
+stop_words = stopwords.words('english')
+newStopWords = ['degree', 'experience', 'Experience', 'provide', 'and/or','including', 'related', 'located', 'Center', 'numerous','throughout', 'equivalent', 'week-course', 'course', 'offered', 'student', 'satisfactory-fail', 'prereq','credit', 'enrollment', '165Introduction']
+stop_words.extend(newStopWords)
+for row in indeed_table.iterrows():
+    words = word_tokenize(row[1]['Job_Description'])
+    for word in words:
+        if word.lower() not in stop_words:
+            if len(word) > 5:
+                final_list.append(word)
+text = nltk.Text(final_list)                
+               
+all_Indeed = nltk.FreqDist(text).most_common(30)
+all_Indeed = pd.Series(dict(all_Indeed))
+all_Indeed = pd.DataFrame({'Word':all_Indeed.index, 'Count':all_Indeed.values})
+
+print(all_Indeed)
+```
+<img width="250" alt="Screen Shot 2021-12-05 at 7 00 18 AM" src="https://user-images.githubusercontent.com/69263707/144747578-e3dda20c-63a7-4714-96e3-ba4365845655.png">
+
+
+
+
+### final List of Words for ABE Course Catalogue Descriptions: 
+```
+final_list = []
+
+stop_words = stopwords.words('english')
+newStopWords = ['department','curriculum', 'within', 'permission', 'introduction', 'credits','216Engineering', 'equivalent8', 'week-course', 'course', 'offered', 'student', 'satisfactory-fail', 'prereq','credit', 'enrollment', '165Introduction']
+stop_words.extend(newStopWords)
+for row in ABE.iterrows():
+    words = word_tokenize(row[1]['Descriptions'])
+    for word in words:
+        if word.lower() not in stop_words:
+            if len(word) > 5:
+                final_list.append(word)
+text = nltk.Text(final_list)                
+all_ABE = nltk.FreqDist(text).most_common(30)
+all_ABE = pd.Series(dict(all_ABE))
+all_ABE = pd.DataFrame({'Word':all_ABE.index, 'Count':all_ABE.values})
+print(all_ABE)
+````
+
+<img width="228" alt="Screen Shot 2021-12-05 at 7 00 34 AM" src="https://user-images.githubusercontent.com/69263707/144747581-d7050751-c1e0-458b-89a6-269062a81335.png">
+
+
