@@ -224,6 +224,10 @@ indeed_table.head(10)
 indeed_figure(indeed_table)
 ```
 
+### Frequency for Indeed Job Postings
+![download-5](https://user-images.githubusercontent.com/69263707/144755928-a0d3303b-c0f3-4d5d-9a9c-e96c1b2e02f0.png)
+
+
 ## Now we can see what keywords were most commonly used in the ABE job postings on Indeed.com
 ### Lets look at the list of words again:
 
