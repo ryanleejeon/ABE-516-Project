@@ -325,6 +325,6 @@ It makes sense, since a lot of engineers wear specialized equipment for their wo
 
 Using geopandas, I also found that it also looks like most of the jobs are centered around the midwest, particularly in Iowa. If that result was intended or erroneous can be up for discussion, but it seems like most of the job opportunities are located in Iowa. 
 
-## 5. Future steps:
-  - I would also like to use the course catalogue for other top ABE schools (Purdue and Cornell) (did not work unfortunetly) 
-  - Plot geopandas by city, not by state
+## 5. Class Task:
+  - I would also like to use the course catalogue for other top ABE schools (Purdue and Cornell)
+  - Plot geopandas by city, not by state (like a COVID cases map) 
