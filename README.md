@@ -12,9 +12,11 @@
 "Is the Iowa State University ABE program teaching the right skills that are needed for ABE careers on Indeed.com?"
 
 
-<img width="551" alt="Screen Shot 2021-12-05 at 1 35 54 PM" src="https://user-images.githubusercontent.com/69263707/144760951-05c80c70-adfa-46b9-ba74-9524fa5a4746.png">
 
+<p align="center">
+    <img alt="3" src="https://user-images.githubusercontent.com/69263707/144760951-05c80c70-adfa-46b9-ba74-9524fa5a4746.png" width="500">
 
+</p>
 
 
 
@@ -283,7 +285,7 @@ all_Indeed = pd.DataFrame({'Word':all_Indeed.index, 'Count':all_Indeed.values})
 
 print(all_Indeed)
 ```
-<img width="300" alt="Screen Shot 2021-12-05 at 7 00 18 AM" src="https://user-images.githubusercontent.com/69263707/144747578-e3dda20c-63a7-4714-96e3-ba4365845655.png">
+
 
 
 ### final List of Words for ABE Course Catalogue Descriptions: 
@@ -306,7 +308,15 @@ all_ABE = pd.DataFrame({'Word':all_ABE.index, 'Count':all_ABE.values})
 print(all_ABE)
 ```
 
-<img width="300" alt="Screen Shot 2021-12-05 at 7 00 18 AM" src="https://user-images.githubusercontent.com/69263707/144747581-d7050751-c1e0-458b-89a6-269062a81335.png">
+
+<p align="center">
+    <img alt="3" src="https://user-images.githubusercontent.com/69263707/144747581-d7050751-c1e0-458b-89a6-269062a81335.png" width="300">
+  
+  
+    <img alt="3" src="https://user-images.githubusercontent.com/69263707/144747578-e3dda20c-63a7-4714-96e3-ba4365845655.png" width="400">                                                                                                                                        
+
+</p>
+
 
 ### 4. Continued (Using Geopandas):
 ```
